@@ -1,9 +1,10 @@
+import {Proteina} from "../../../GerenciadorDeCardapio.Api/Domain/Entities/Proteina"
 export class ProteinaDTO {
     cd_proteina: number;
-    nm_proteina: string;
+    nm_proteina: string | null;
   
-    constructor(cd_proteina: number, nm_proteina: string) {
-      this.cd_proteina = cd_proteina;
-      this.nm_proteina = nm_proteina;
+    constructor(proteina:Proteina) {
+      this.cd_proteina = proteina.getCdProteina();
+      this.nm_proteina = proteina.getNmProteina();
     }
-  }
+}

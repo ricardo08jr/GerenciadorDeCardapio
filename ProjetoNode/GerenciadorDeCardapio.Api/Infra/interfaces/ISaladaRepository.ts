@@ -2,7 +2,7 @@ import { Salada } from "../../Domain/Entities/Salada"
 
 export interface ISaladaRepository{
     
-    getProteinaById(cd_proteina:number):any
-    getAllProteina():any
+    getSaladaById(cd_proteina:number):Promise<Salada | null>
+    getAllSalada():Promise<Salada[]>
     
 }

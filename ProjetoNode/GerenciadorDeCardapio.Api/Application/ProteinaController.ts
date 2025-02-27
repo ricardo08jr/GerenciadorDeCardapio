@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { z } from 'zod';
-import { ProteinaPrismaRepository } from "../Infra/ProteinaPrismaRepository";
+import {ProteinaDTO } from "../../GerenciadorDeCardapio.Models/Dtos/Models/ProteinaDto"
 import { request } from "http";
 import { IProteinaRepository } from "../Infra/interfaces/IProteinaRepository";
 export class ProteinaController{
@@ -13,7 +13,8 @@ export class ProteinaController{
             app.get('/proteina', async (request, reply) => {
                 // Adicionar await para garantir que a Promise seja resolvida
                 const proteins = await this.repository.getAllProteina();
-                return reply.status(200).send(proteins);
+                const proteinsDTO = proteins.map(p => new ProteinaDTO(p))
+                return reply.status(200).send(proteinsDTO);
             });
             app.get('/proteina/:id', async (request, reply) => {
                 // Adicionar await para garantir que a Promise seja resolvida
@@ -22,6 +23,7 @@ export class ProteinaController{
                 })
                 const {id} = params.parse(request.params)
                 const protein = await this.repository.getProteinaById(Number(id));
+                const proteinDto = protein?new ProteinaDTO(protein):null
                 return reply.status(200).send(protein);
             });
         };

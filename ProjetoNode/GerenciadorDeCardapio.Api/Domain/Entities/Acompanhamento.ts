@@ -1,8 +1,8 @@
 export class Acompanhamento {
     private cd_acompanhamento: number;
-    private nm_acompanhamento: string;
+    private nm_acompanhamento: string | null;
   
-    constructor(cd_acompanhamento: number, nm_acompanhamento: string) {
+    constructor(cd_acompanhamento: number, nm_acompanhamento: string | null)  {
       this.cd_acompanhamento = cd_acompanhamento;
       this.nm_acompanhamento = nm_acompanhamento;
     }
@@ -11,7 +11,7 @@ export class Acompanhamento {
       return this.cd_acompanhamento;
     }
   
-    getNmAcompanhamento(): string {
+    getNmAcompanhamento(): string | null {
       return this.nm_acompanhamento;
     }
   

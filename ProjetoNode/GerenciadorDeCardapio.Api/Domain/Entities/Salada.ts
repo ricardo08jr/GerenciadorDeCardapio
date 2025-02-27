@@ -1,8 +1,8 @@
 export class Salada {
     private cd_salada: number;
-    private nm_salada: string;
+    private nm_salada: string | null;
   
-    constructor(cd_salada: number, nm_salada: string) {
+    constructor(cd_salada: number, nm_salada: string | null) {
       this.cd_salada = cd_salada;
       this.nm_salada = nm_salada;
     }
@@ -11,7 +11,7 @@ export class Salada {
       return this.cd_salada;
     }
   
-    getNmSalada(): string {
+    getNmSalada(): string | null {
       return this.nm_salada;
     }
   

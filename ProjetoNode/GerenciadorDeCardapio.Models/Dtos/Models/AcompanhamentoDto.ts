@@ -1,9 +1,10 @@
+import { Acompanhamento } from "../../../GerenciadorDeCardapio.Api/Domain/Entities/Acompanhamento";
 export class AcompanhamentoDTO {
     cd_acompanhamento: number;
-    nm_acompanhamento: string;
+    nm_acompanhamento: string | null;
   
-    constructor(cd_acompanhamento: number, nm_acompanhamento: string) {
-      this.cd_acompanhamento = cd_acompanhamento;
-      this.nm_acompanhamento = nm_acompanhamento;
+    constructor(acompanhamento: Acompanhamento) {
+      this.cd_acompanhamento = acompanhamento.getCdAcompanhamento();
+      this.nm_acompanhamento = acompanhamento.getNmAcompanhamento();
     }
   }
