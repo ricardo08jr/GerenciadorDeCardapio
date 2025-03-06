@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../services/api';
+import Layout from '../components/Layout';
 
 const Cardapio = () => {
   const [cardapio, setCardapio] = useState([]);
@@ -17,17 +18,19 @@ const Cardapio = () => {
   }, []);
 
   return (
-    <section>
-      <h1>Cardápio</h1>
-      <div className="areaCardapio">
-        {cardapio.map(item => (
-          <div key={item.id} className="itemCardapio">
-            <p>{item.data}</p>
-            <p>{item.prato.nome}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <Layout>
+      <section>
+        <h1>Cardápio</h1>
+        <div className="areaCardapio">
+          {cardapio.map(item => (
+            <div key={item.id} className="itemCardapio">
+              <p>{item.data}</p>
+              <p>{item.prato.nome}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </Layout>
   );
 };
 

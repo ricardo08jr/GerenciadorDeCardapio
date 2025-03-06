@@ -5,9 +5,13 @@ import { SaladaController } from "./SaladaController";
 import { SaladaPrismaRepository } from "../Infra/SaladaPrismaRepository";
 import { AcompanhamentoPrismaRepository } from "../Infra/AcompanhamentoPrismaRepository";
 import { AcompanhamentoController } from "./AcompanhamentoController";
+import cors from "@fastify/cors";
 const app = fastify()
 /* EndPoint Gets */
-
+app.register(cors, {
+	origin: "http://localhost:3000", // URL do seu frontend React
+	methods: ["GET", "POST", "PUT", "DELETE"]
+  });
 /* Proteina */
 const proteinaRepository = new ProteinaPrismaRepository()
 const proteinaController = new ProteinaController(proteinaRepository)
