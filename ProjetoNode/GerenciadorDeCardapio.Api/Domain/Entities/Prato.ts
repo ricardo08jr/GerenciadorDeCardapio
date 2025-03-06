@@ -3,17 +3,17 @@ import { Acompanhamento } from "./Acompanhamento";
 import { Salada } from "./Salada";
 export class Prato {
     private cd_prato: number;
-    private proteina: Proteina;
-    private nm_detalhe: string;
-    private acompanhamento: Acompanhamento;
-    private salada: Salada;
+    private proteina: Proteina | null;
+    private nm_detalhe: string | null;
+    private acompanhamento: Acompanhamento | null;
+    private salada: Salada | null;
   
     constructor(
       cd_prato: number,
-      proteina: Proteina,
-      nm_detalhe: string,
-      acompanhamento: Acompanhamento,
-      salada: Salada
+      proteina: Proteina | null,
+      nm_detalhe: string | null,
+      acompanhamento: Acompanhamento | null ,
+      salada: Salada | null
     ) {
       this.cd_prato = cd_prato;
       this.proteina = proteina;
@@ -26,19 +26,19 @@ export class Prato {
       return this.cd_prato;
     }
   
-    getProteina(): Proteina {
+    getProteina(): Proteina | null {
       return this.proteina;
     }
   
-    getNmDetalhe(): string {
+    getNmDetalhe(): string | null {
       return this.nm_detalhe;
     }
   
-    getAcompanhamento(): Acompanhamento {
+    getAcompanhamento(): Acompanhamento | null {
       return this.acompanhamento;
     }
   
-    getSalada(): Salada {
+    getSalada(): Salada | null {
       return this.salada;
     }
   
