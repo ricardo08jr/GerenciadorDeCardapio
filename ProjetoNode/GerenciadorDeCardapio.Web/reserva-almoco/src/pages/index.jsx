@@ -25,7 +25,7 @@ const Cardapio = () => {
           {cardapio.map(item => (
             <div key={item.id} className="itemCardapio">
               <p>{item.data}</p>
-              <p>{item.prato.nome}</p>
+              <p>{item.prato.nm_prato}</p>
             </div>
           ))}
         </div>

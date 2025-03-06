@@ -1,7 +1,7 @@
 import { Prato } from "../../../GerenciadorDeCardapio.Api/Domain/Entities/Prato";
 
 export class PratoDTO {
-    cd_prato: number;
+    cd_prato: number ;
     cd_proteina: number | null;
     nm_proteina: string | null;
     nm_detalhe: string | null;
