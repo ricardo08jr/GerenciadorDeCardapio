@@ -1,4 +1,4 @@
-package Domain.Entities;
+package com.gerenciador.cardapio.gerenciador_cardapio_spring.Entities;
 
 import jakarta.persistence.*;
 
