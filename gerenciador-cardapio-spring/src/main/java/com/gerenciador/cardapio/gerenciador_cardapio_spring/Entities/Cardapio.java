@@ -1,5 +1,6 @@
 package com.gerenciador.cardapio.gerenciador_cardapio_spring.Entities;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
@@ -13,11 +14,14 @@ import java.time.LocalDateTime;
 public class Cardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private long id;
 
+    @Getter
     private LocalDateTime data;
 
     @ManyToOne
     @JoinColumn(name = "prato_id")
+    @Getter
     private Prato prato;
 }

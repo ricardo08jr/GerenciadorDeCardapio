@@ -11,7 +11,8 @@ import lombok.Setter;
 public class Salada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private long id;
-
+    @Getter
     private String nome;
 }

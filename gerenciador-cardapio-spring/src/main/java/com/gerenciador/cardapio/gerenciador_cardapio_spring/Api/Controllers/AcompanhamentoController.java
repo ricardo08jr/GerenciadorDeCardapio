@@ -19,7 +19,7 @@ public class AcompanhamentoController {
         this._acompanhamentoRepository = acompanhamentoRepository;
     }
     @GetMapping
-    public List<Acompanhamento> get(){
+    public List<Acompanhamento> getAll(){
         return _acompanhamentoRepository.findAll();
     }
 }

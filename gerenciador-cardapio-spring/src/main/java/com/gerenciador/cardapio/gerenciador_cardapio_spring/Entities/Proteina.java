@@ -9,7 +9,10 @@ import lombok.Setter;
 public class Proteina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Getter
     private long id;
 
+    @Getter
     private String nome;
 }
