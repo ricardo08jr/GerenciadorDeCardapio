@@ -67,6 +67,6 @@ Com isso, foi possível perceber vantagens como:
 ## Comparação entre ORM e implementação manual
 
 Abaixo você pode inserir prints mostrando a diferença entre as abordagens:
-![Implementação com C# manual](./prints/ControllerC#.png)
+![Implementação com C# manual](./prints/ControllerCsharp.png)
 ![Implementação com ORM - Spring Boot](./prints/RepositorySpring.png)
 ![Implementação da Controller - Spring Boot](./prints/ControllerSpring.png)
