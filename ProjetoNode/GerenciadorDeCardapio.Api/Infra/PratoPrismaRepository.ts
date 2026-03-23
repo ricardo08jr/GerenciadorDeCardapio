@@ -6,7 +6,11 @@ import { Proteina } from "../Domain/Entities/Proteina";
 import { Salada } from "../Domain/Entities/Salada";
 import { Acompanhamento } from "../Domain/Entities/Acompanhamento";
 export class PratoPrismaRepository implements IPratoRepository{
+     createInstance = <T>(data: any, Clazz: new (code: number, name: string) => T): T | null => {
+        return data ? new Clazz(data[`cd_${Clazz.name.toLowerCase()}`], data[`nm_${Clazz.name.toLowerCase()}`]) : null;
+    };
     async getAllPrato(): Promise<Prato[]> {
+        
         const data = await prisma.prato.findMany({
             include: {
                 proteina: true,
@@ -15,39 +19,13 @@ export class PratoPrismaRepository implements IPratoRepository{
             }
         });
 
-        return data.map(pratoData => {
-            let proteina = null
-            let salada = null
-            let acompanhamento = null
-            if( pratoData.proteina){
-                 proteina = new Proteina(
-                    pratoData.proteina.cd_proteina,
-                    pratoData.proteina.nm_proteina
-                );
-            }
-            if(pratoData.acompanhamento){
-                acompanhamento = new Acompanhamento(
-                    pratoData.acompanhamento.cd_acompanhamento,
-                    pratoData.acompanhamento.nm_acompanhamento
-                );
-            }
-            if(pratoData.salada)
-            {
-                 salada = new Salada(
-                    pratoData.salada.cd_salada,
-                    pratoData.salada.nm_salada
-                );
-     
-            } 
-
-            return new Prato(
-                pratoData.cd_prato,
-                proteina,
-                pratoData.nm_detalhe,
-                acompanhamento,
-                salada
-            );
-        });
+       return data.map(pratoData => new Prato(
+        pratoData.cd_prato,
+        this.createInstance(pratoData.proteina, Proteina),
+        pratoData.nm_detalhe,
+        this.createInstance(pratoData.acompanhamento, Acompanhamento),
+        this.createInstance(pratoData.salada, Salada)
+    ));
     }
    
     async createPrato(prato: PratoDTO): Promise<Prato> {
@@ -59,37 +37,13 @@ export class PratoPrismaRepository implements IPratoRepository{
                 salada: true
             }
         })
-        let proteina = null
-            let salada = null
-            let acompanhamento = null
-            if( pratoData.proteina){
-                 proteina = new Proteina(
-                    pratoData.proteina.cd_proteina,
-                    pratoData.proteina.nm_proteina
-                );
-            }
-            if(pratoData.acompanhamento){
-                acompanhamento = new Acompanhamento(
-                    pratoData.acompanhamento.cd_acompanhamento,
-                    pratoData.acompanhamento.nm_acompanhamento
-                );
-            }
-            if(pratoData.salada)
-            {
-                 salada = new Salada(
-                    pratoData.salada.cd_salada,
-                    pratoData.salada.nm_salada
-                );
-     
-            } 
-
-            return new Prato(
-                pratoData.cd_prato,
-                proteina,
-                pratoData.nm_detalhe,
-                acompanhamento,
-                salada
-            );
+        return  new Prato(
+            pratoData.cd_prato,
+            this.createInstance(pratoData.proteina, Proteina),
+            pratoData.nm_detalhe,
+            this.createInstance(pratoData.acompanhamento, Acompanhamento),
+            this.createInstance(pratoData.salada, Salada)
+        );
         
         
     }
